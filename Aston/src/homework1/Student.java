@@ -2,7 +2,7 @@ package homework1;
 
 public class Student {
 
-    private String surname;
+    private final String surname;
     private Evaluation evaluation;
 
     public Student(String surname) {
