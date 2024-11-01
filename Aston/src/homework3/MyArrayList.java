@@ -26,16 +26,13 @@ public class MyArrayList<Type> {
 
     @SuppressWarnings("unchecked")
     public Type get(int index) {
-        if(index >= size) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
         return (Type) list[index];
     }
 
     public void add(Type type) {
-        if(size == list.length) {
-            list = Arrays.copyOf(list, list.length * 2);
-        }
+            this.list = Arrays.copyOf(list, list.length * 2);
+            list[size] = type;
+            size++;
     }
 
     public void add(int index, Type type) {
@@ -57,9 +54,9 @@ public class MyArrayList<Type> {
         if(index < 0 || index >= size) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        list[index] = null;
         size--;
-        System.arraycopy(list, index, list, index + 1, size - index);
+        System.arraycopy(list, index + 1, list, index, size - index);
+        list = Arrays.copyOf(list, size);
     }
 
     public void sortCollection(Comparator<Object> t) {
